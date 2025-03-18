@@ -22,10 +22,10 @@ public class Proposta {
     private BigDecimal valorSolicitado;
     private Short prazoPagamento;
     private Boolean aprovado;
-    private Boolean integrada;
+    private boolean integrada;
     private String observacao;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 }
