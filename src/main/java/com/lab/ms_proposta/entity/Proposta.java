@@ -13,7 +13,7 @@ public class Proposta {
     private Long id;
     private BigDecimal valorSolicitado;
     private Short prazoPagamento;
-    private Boolean aprovada;
+    private Boolean aprovado;
     private Boolean integrada;
     private String observacao;
 
