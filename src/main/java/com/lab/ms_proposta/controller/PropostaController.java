@@ -34,8 +34,6 @@ public class PropostaController {
     @GetMapping
     public ResponseEntity<List<PropostaResponseDto>> obterPropostas() {
         var propostas = propostaService.obterPropostas();
-        return propostas.isEmpty()
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok(propostas);
+        return ResponseEntity.ok(propostas);
     }
 }
