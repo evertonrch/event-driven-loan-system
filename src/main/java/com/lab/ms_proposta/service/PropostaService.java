@@ -15,13 +15,16 @@ import java.util.List;
 public class PropostaService {
 
     private PropostaRepository propostaRepository;
-
+    private NotificacaoService notificacaoService;
 
     public PropostaResponseDto salvar(PropostaRequestDto request) {
         Proposta proposta = PropostaMapper.INSTANCE.fromDtotoProposta(request);
         Proposta propostaSalva = propostaRepository.save(proposta);
 
-        return PropostaMapper.INSTANCE.fromEntityToDto(propostaSalva);
+        var propostaResponse = PropostaMapper.INSTANCE.fromEntityToDto(propostaSalva);
+        notificacaoService.notificar(propostaResponse, "proposta-pendente.ex");
+
+        return propostaResponse;
     }
 
     public List<PropostaResponseDto> obterPropostas() {
