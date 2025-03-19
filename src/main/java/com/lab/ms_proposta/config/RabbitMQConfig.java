@@ -78,7 +78,7 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public RabbitTemplate restTemplate(ConnectionFactory connectionFactory, MessageConverter messageConverter) {
+    public RabbitTemplate restTemplate(ConnectionFactory connectionFactory, Jackson2JsonMessageConverter messageConverter) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
         rabbitTemplate.setBeanName("restTemplate");
         rabbitTemplate.setConnectionFactory(connectionFactory);
