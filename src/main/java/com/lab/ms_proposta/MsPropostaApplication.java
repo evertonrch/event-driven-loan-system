@@ -7,10 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MsPropostaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(MsPropostaApplication.class);
-		app.setBannerMode(Banner.Mode.OFF);
-		app.run(args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(MsPropostaApplication.class);
+        app.setBannerMode(Banner.Mode.OFF);
+        app.run(args);
+    }
 }
