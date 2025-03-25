@@ -31,6 +31,7 @@ public class PropostaSemIntegracao {
             try {
                 notificacaoService.notificar(proposta, exchange);
                 atualizarProposta(proposta);
+                log.info("Proposta {} atualizada.", proposta.getId());
             } catch (RuntimeException ex) {
                 log.error("Erro ao reenviar notificação: {}", ex.getMessage());
             }
