@@ -21,7 +21,7 @@ public class PropostaResponseDto {
     private BigDecimal renda;
     private String valorSolicitadoFmt;
     private Short prazoPagamento;
-    private Boolean aprovado;
+    private Boolean aprovada;
     private String observacao;
 
 }

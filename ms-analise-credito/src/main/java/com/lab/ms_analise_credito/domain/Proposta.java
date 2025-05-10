@@ -7,7 +7,7 @@ public class Proposta {
     private Long id;
     private BigDecimal valorSolicitado;
     private Short prazoPagamento;
-    private Boolean aprovado;
+    private Boolean aprovada;
     private boolean integrada;
     private String observacao;
     private Usuario usuario;
@@ -36,12 +36,12 @@ public class Proposta {
         this.prazoPagamento = prazoPagamento;
     }
 
-    public Boolean getAprovado() {
-        return aprovado;
+    public Boolean getAprovada() {
+        return aprovada;
     }
 
-    public void setAprovado(Boolean aprovado) {
-        this.aprovado = aprovado;
+    public void setAprovada(Boolean aprovada) {
+        this.aprovada = aprovada;
     }
 
     public boolean isIntegrada() {

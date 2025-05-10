@@ -8,7 +8,7 @@ public class Proposta {
     private Long id;
     private BigDecimal valorSolicitado;
     private Short prazoPagamento;
-    private Boolean aprovado;
+    private Boolean aprovada;
     private boolean integrada;
     private String observacao;
     private Usuario usuario;
@@ -25,8 +25,8 @@ public class Proposta {
         return prazoPagamento;
     }
 
-    public Boolean getAprovado() {
-        return aprovado;
+    public Boolean getAprovada() {
+        return aprovada;
     }
 
     public boolean isIntegrada() {

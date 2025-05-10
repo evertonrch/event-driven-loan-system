@@ -22,7 +22,7 @@ public class Proposta {
     private Long id;
     private BigDecimal valorSolicitado;
     private Short prazoPagamento;
-    private Boolean aprovado;
+    private Boolean aprovada;
     private boolean integrada;
     private String observacao;
 
