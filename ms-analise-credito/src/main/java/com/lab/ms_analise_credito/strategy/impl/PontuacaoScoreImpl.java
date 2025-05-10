@@ -1,5 +1,6 @@
 package com.lab.ms_analise_credito.strategy.impl;
 
+import com.lab.ms_analise_credito.constantes.MensagemConstante;
 import com.lab.ms_analise_credito.domain.Proposta;
 import com.lab.ms_analise_credito.exception.ScoreBaixoException;
 import com.lab.ms_analise_credito.strategy.CalculoPonto;
@@ -16,8 +17,9 @@ public class PontuacaoScoreImpl implements CalculoPonto {
     public int calcular(Proposta proposta) {
         int score = score();
 
-        if (score <= 200) {
-            throw new ScoreBaixoException("Score fora do limite.");
+        if (score < 200) {
+            String mensagem = MensagemConstante.PONTUACAO_SERASA_BAIXA.formatted(proposta.getUsuario().getNome());
+            throw new ScoreBaixoException(mensagem);
         }
 
         return switch (score / 200) {
