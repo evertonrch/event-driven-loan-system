@@ -13,10 +13,10 @@ import java.util.List;
 @Service
 public class PropostaService {
 
-    private PropostaRepository propostaRepository;
-    private NotificacaoService notificacaoService;
+    private final PropostaRepository propostaRepository;
+    private final NotificacaoService notificacaoService;
 
-    @Value("${rabbitmq.propostapendente.exchange}")
+    @Value("${rabbitmq.proposta.pendente.exchange}")
     private String exchange;
 
     public PropostaService(PropostaRepository propostaRepository, NotificacaoService notificacaoService) {
@@ -26,15 +26,10 @@ public class PropostaService {
 
     public PropostaResponseDto salvar(PropostaRequestDto request) {
         Proposta proposta = PropostaMapper.INSTANCE.fromDtotoProposta(request);
-        Proposta propostaSalva = propostaRepository.save(proposta);
-        notificarRabbitMQ(propostaSalva);
+        propostaRepository.save(proposta);
+        notificarRabbitMQ(proposta);
 
-        return PropostaMapper.INSTANCE.fromEntityToDto(propostaSalva);
-    }
-
-    public void salvar(Proposta proposta) {
-        Proposta propostaSalva = propostaRepository.save(proposta);
-        notificarRabbitMQ(propostaSalva);
+        return PropostaMapper.INSTANCE.fromEntityToDto(proposta);
     }
 
     private void notificarRabbitMQ(Proposta proposta) {
