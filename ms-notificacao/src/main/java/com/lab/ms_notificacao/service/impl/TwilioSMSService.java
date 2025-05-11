@@ -27,14 +27,14 @@ public class TwilioSMSService implements MessageTextService {
     public void sendSMS(String para, String mensagem) {
         try {
             Twilio.init(accountSid, accountAuthToken);
-            enviaMensage(para, mensagem);
+            enviaMensagem(para, mensagem);
             log.info("SMS enviado para {} com sucesso.", para);
         } catch (Exception ex) {
             log.error("Error ao enviar SMS : {}", ex.toString());
         }
     }
 
-    private void enviaMensage(String para, String mensagem) {
+    private void enviaMensagem(String para, String mensagem) {
         PhoneNumber destino = new PhoneNumber(para);
         PhoneNumber numeroTwilio = new PhoneNumber(phone);
         Message.creator(destino, numeroTwilio, mensagem).create();
