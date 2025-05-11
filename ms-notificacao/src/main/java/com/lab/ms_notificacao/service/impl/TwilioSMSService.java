@@ -2,6 +2,7 @@ package com.lab.ms_notificacao.service.impl;
 
 import com.lab.ms_notificacao.service.MessageTextService;
 import com.twilio.Twilio;
+import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ public class TwilioSMSService implements MessageTextService {
             Twilio.init(accountSid, accountAuthToken);
             enviaMensagem(para, mensagem);
             log.info("SMS enviado para {} com sucesso.", para);
-        } catch (Exception ex) {
+        } catch (ApiException ex) {
             log.error("Error ao enviar SMS : {}", ex.toString());
         }
     }
