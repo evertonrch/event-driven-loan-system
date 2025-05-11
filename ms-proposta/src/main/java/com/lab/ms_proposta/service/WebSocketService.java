@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class WebSocketService {
 
+    public static final String TOPICO = "/propostas";
+
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     public WebSocketService(SimpMessagingTemplate simpMessagingTemplate) {
@@ -14,6 +16,6 @@ public class WebSocketService {
     }
 
     public void notificar(PropostaResponseDto proposta) {
-        simpMessagingTemplate.convertAndSend("/propostas", proposta);
+        simpMessagingTemplate.convertAndSend(TOPICO, proposta);
     }
 }
