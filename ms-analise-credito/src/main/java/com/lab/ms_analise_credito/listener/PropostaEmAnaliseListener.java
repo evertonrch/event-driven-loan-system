@@ -15,16 +15,9 @@ public class PropostaEmAnaliseListener {
     private static final Logger log = LoggerFactory.getLogger(PropostaEmAnaliseListener.class);
 
     private final AnaliseCreditoService analiseCreditoService;
-    private final RabbitTemplate rabbitTemplate;
 
-    private final String exchangePropostaConcluida;
-
-    public PropostaEmAnaliseListener(AnaliseCreditoService analiseCreditoService,
-                                     RabbitTemplate rabbitTemplate,
-                                     @Value("${rabbitmq.propostaconcluida.exchange}") String exchangePropostaConcluida) {
+    public PropostaEmAnaliseListener(AnaliseCreditoService analiseCreditoService) {
         this.analiseCreditoService = analiseCreditoService;
-        this.rabbitTemplate = rabbitTemplate;
-        this.exchangePropostaConcluida = exchangePropostaConcluida;
     }
 
     @RabbitListener(queues = "${rabbitmq.queue.proposta.pendente}")
@@ -32,7 +25,5 @@ public class PropostaEmAnaliseListener {
         log.info("Iniciando análise da proposta.");
         analiseCreditoService.analisar(proposta);
         log.info("Análise da proposta finalizada.");
-
-        rabbitTemplate.convertAndSend(exchangePropostaConcluida, "", proposta);
     }
 }
