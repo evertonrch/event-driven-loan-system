@@ -1,4 +1,4 @@
-package com.lab.ms_notificacao.rule.impl;
+package com.lab.ms_notificacao.rule;
 
 import org.springframework.stereotype.Component;
 

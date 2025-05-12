@@ -1,4 +1,4 @@
-package com.lab.ms_notificacao.rule.impl;
+package com.lab.ms_notificacao.rule;
 
 import com.lab.ms_notificacao.exception.TelefoneInvalidoException;
 import org.slf4j.Logger;
