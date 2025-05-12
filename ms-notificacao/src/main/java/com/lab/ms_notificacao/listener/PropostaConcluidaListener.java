@@ -37,6 +37,7 @@ public class PropostaConcluidaListener {
             validaTelefoneRule.validar(usuario.getTelefone());
         } catch (TelefoneInvalidoException ex) {
             LOG.warn("Telefone inválido recebido: {}", ex.toString());
+            return;
         }
 
         String telefone = normalizaTelefoneRule.normalizar(usuario.getTelefone());
