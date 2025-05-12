@@ -11,9 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
-import java.util.Objects;
+import java.math.BigDecimal;
 
 @Component
 public class PropostaConcluidaListener {
@@ -39,11 +38,19 @@ public class PropostaConcluidaListener {
             LOG.warn("Telefone inválido recebido: {}", ex.toString());
             return;
         }
-
         String telefone = normalizaTelefoneRule.normalizar(usuario.getTelefone());
-        String mensagemFormatada = MensagemConstante.PROPOSTA_CONCLUIDA.formatted(StringUtils.capitalize(usuario.getNome()));
+        String mensagem = geraMensagem(proposta.getAprovada(), proposta.getValorSolicitado(), usuario.getNome());
 
-        String mensagem = Objects.nonNull(proposta.getObservacao()) ? proposta.getObservacao() : mensagemFormatada;
         notificarService.notificar(telefone, mensagem);
+    }
+
+    private String geraMensagem(boolean isAprovada, BigDecimal valorSolicitado, String nomeUsuario) {
+        String mensagem;
+        if(isAprovada) {
+            mensagem = MensagemConstante.PROPOSTA_APROVADA.formatted(nomeUsuario, valorSolicitado);
+        } else {
+            mensagem = MensagemConstante.PROPOSTA_RECUSADA.formatted(nomeUsuario, valorSolicitado);
+        }
+        return mensagem;
     }
 }
