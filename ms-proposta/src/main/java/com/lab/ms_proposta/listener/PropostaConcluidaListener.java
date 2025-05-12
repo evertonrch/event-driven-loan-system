@@ -21,8 +21,12 @@ public class PropostaConcluidaListener {
 
     @RabbitListener(queues = "${rabbitmq.queue.proposta.concluida}")
     public void propostaConcluida(Proposta proposta) {
-        propostaRepository.save(proposta);
+        atualizarProposta(proposta);
         webSocketService.notificar(toDto(proposta));
+    }
+
+    private void atualizarProposta(Proposta proposta) {
+        propostaRepository.atualizarProposta(proposta.getId(), proposta.getAprovada(), proposta.getObservacao());
     }
 
     private PropostaResponseDto toDto(Proposta proposta) {
